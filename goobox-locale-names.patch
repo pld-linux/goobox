@@ -1,0 +1,12 @@
+diff -urN goobox-0.7.2.orig/configure.in goobox-0.7.2/configure.in
+--- goobox-0.7.2.orig/configure.in	2005-01-25 10:37:08.819429888 +0100
++++ goobox-0.7.2/configure.in	2005-01-25 10:44:03.407402936 +0100
+@@ -104,7 +104,7 @@
+ 
+ dnl ******************************
+ 
+-ALL_LINGUAS="ar bg cs da el en_CA es fi fr hu ja ko lt nb nl no pa pt ru sv zh_CN"
++ALL_LINGUAS="ar bg cs da el en_CA es fi fr hu ja ko lt nb nl pa pt ru sv zh_CN"
+ 
+ GETTEXT_PACKAGE=goobox
+ AC_SUBST(GETTEXT_PACKAGE)
