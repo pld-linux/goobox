@@ -1,16 +1,16 @@
 # TODO:
 #	- maybe some info that you need to install proper
-#	  gstreamer plugins if you want to rip a CD
+#	  gstreamer plugins to rip a CD (%%banner ?)
 #
 Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
-Version:	0.7.2
+Version:	0.9.90
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	aeecf6fa7dd58c1eb832c49c880c0c0c
+Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
+# Source0-md5:	a88c8fb3745577f34221039ae8341a16
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
@@ -19,22 +19,21 @@ BuildRequires:	ORBit2-devel >= 2.3.0
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-media-devel >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.6.0
+BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
 BuildRequires:	gstreamer-GConf-devel >= 0.8.0
 BuildRequires:	gstreamer-devel >= 0.8.0
 BuildRequires:	gstreamer-plugins-devel >= 0.8.0
-BuildRequires:	gtk+2-devel >= 2:2.4.0
+BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.6.0
-BuildRequires:	libglade2-devel >= 1:2.4.0
-BuildRequires:	libgnomeui-devel >= 2.6.0
+BuildRequires:	libbonobo-devel >= 2.8.0
+BuildRequires:	libglade2-devel >= 1:2.5.0
+BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
-Requires:	gnome-media >= 2.8.0
+Requires:	gnome-media-cddb >= 2.10.0-0.2
 Requires:	gstreamer-cdparanoia
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
