@@ -6,7 +6,7 @@ diff -urN goobox-0.6.0.orig/data/goobox.desktop.in goobox-0.6.0/data/goobox.desk
  _Name=CD Player
  _Comment=Play and extract CDs
 -Categories=GNOME;Application;AudioVideo;
-+Categories=GTK;GNOME;Audio;Player;
++Categories=GTK;GNOME;AudioVideo;Audio;Player;
  Encoding=UTF-8
  Exec=goobox
  Icon=goobox.png
