@@ -5,14 +5,13 @@
 Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
-Version:	0.7.0
+Version:	0.7.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	c4811935afd53b42111993b71fa97c58
+# Source0-md5:	ea5cdea29a31e234f1c8722a27117e24
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-about.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel >= 2.3.0
@@ -46,7 +45,6 @@ Odtwarzacz i ripper CD dla GNOME.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
