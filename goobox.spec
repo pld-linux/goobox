@@ -5,13 +5,14 @@
 Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
-Version:	0.7.1
+Version:	0.7.2
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/0.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	ea5cdea29a31e234f1c8722a27117e24
+# Source0-md5:	aeecf6fa7dd58c1eb832c49c880c0c0c
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel >= 2.3.0
@@ -32,6 +33,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires(post):	GConf2
+Requires(post):	scrollkeeper
 Requires:	gnome-media >= 2.8.0
 Requires:	gstreamer-cdparanoia
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,6 +47,9 @@ Odtwarzacz i ripper CD dla GNOME.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+
+rm -f po/no.po
 
 %build
 %{__libtoolize}
@@ -62,10 +67,13 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-%find_lang %{name}
+%find_lang %{name} --with-gnome
 
 %post
 %gconf_schema_install
+/usr/bin/scrollkeeper-update
+
+%postun -p /usr/bin/scrollkeeper-update
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,6 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/application-registry/*
 %{_libdir}/bonobo/servers/*
+%{_omf_dest_dir}/%{name}
 %{_datadir}/%{name}
 %{_desktopdir}/*
 %{_pixmapsdir}/*
