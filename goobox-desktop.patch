@@ -1,0 +1,12 @@
+diff -urN goobox-0.6.0.orig/data/goobox.desktop.in goobox-0.6.0/data/goobox.desktop.in
+--- goobox-0.6.0.orig/data/goobox.desktop.in	2004-12-09 19:21:56.414671928 +0100
++++ goobox-0.6.0/data/goobox.desktop.in	2004-12-09 19:23:08.797668040 +0100
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ _Name=CD Player
+ _Comment=Play and extract CDs
+-Categories=GNOME;Application;AudioVideo;
++Categories=GTK;GNOME;Audio;Player;
+ Encoding=UTF-8
+ Exec=goobox
+ Icon=goobox.png
