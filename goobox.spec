@@ -17,6 +17,7 @@ BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel >= 2.3.0
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	gnome-media-devel >= 2.8.0
 BuildRequires:	gnome-vfs2-devel >= 2.6.0
 BuildRequires:	gstreamer-GConf-devel >= 0.8.0
@@ -27,7 +28,9 @@ BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.6.0
 BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	libgnomeui-devel >= 2.6.0
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 Requires(post):	GConf2
 Requires:	gnome-media >= 2.8.0
 Requires:	gstreamer-cdparanoia
