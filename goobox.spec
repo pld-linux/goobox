@@ -88,7 +88,7 @@ fi
 
 %postun
 if [ $1 = 0 ]; then
-	usr/bin/scrollkeeper-update -q
+	/usr/bin/scrollkeeper-update -q
 fi
 
 %clean
