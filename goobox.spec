@@ -1,12 +1,8 @@
-# TODO:
-#	- maybe some info that you need to install proper
-#	  gstreamer plugins to rip a CD (%%banner ?)
-#
 Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
 Version:	0.9.90
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
@@ -20,9 +16,9 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gstreamer-GConf-devel >= 0.8.0
-BuildRequires:	gstreamer-devel >= 0.8.0
-BuildRequires:	gstreamer-plugins-devel >= 0.8.0
+BuildRequires:	gstreamer-GConf-devel >= 0.8.8
+BuildRequires:	gstreamer-devel >= 0.8.9
+BuildRequires:	gstreamer-plugins-devel >= 0.8.8
 BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.8.0
@@ -31,10 +27,11 @@ BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.176
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	gnome-media-cddb >= 2.10.0-0.2
-Requires:	gstreamer-cdparanoia
+Requires:	gstreamer-cdparanoia >= 0.8.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -71,6 +68,14 @@ rm -rf $RPM_BUILD_ROOT
 %post
 %gconf_schema_install
 /usr/bin/scrollkeeper-update
+%banner %{name} -e << EOF
+To be able to rip a CD, You need to install appropriate
+GStreamer plugins:
+- gstreamer-audio-formats (encoding to WAVE)
+- gstreamer-flac (encoding to FLAC)
+- gstreamer-lame (encoding to MP3)
+- gstreamer-vorbis (encoding to Ogg Vorbis)
+EOF
 
 %postun -p /usr/bin/scrollkeeper-update
 
