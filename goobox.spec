@@ -1,17 +1,18 @@
 Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
-Version:	0.9.90
-Release:	2
+Version:	0.9.91
+Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	a88c8fb3745577f34221039ae8341a16
+# Source0-md5:	dc15f40e664961c1e4dd7554ea7f02b5
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-locale-names.patch
+Patch2:		%{name}-pl.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
-BuildRequires:	ORBit2-devel >= 2.3.0
+BuildRequires:	ORBit2-devel >= 1:2.12.1
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -19,18 +20,18 @@ BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
 BuildRequires:	gstreamer-GConf-devel >= 0.8.8
 BuildRequires:	gstreamer-devel >= 0.8.9
 BuildRequires:	gstreamer-plugins-devel >= 0.8.8
-BuildRequires:	gtk+2-devel >= 2:2.6.3
+BuildRequires:	gtk+2-devel >= 2:2.6.4
 BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.8.0
-BuildRequires:	libglade2-devel >= 1:2.5.0
+BuildRequires:	libbonobo-devel >= 2.8.1
+BuildRequires:	libglade2-devel >= 1:2.5.1
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.176
-Requires(post):	GConf2
-Requires(post):	scrollkeeper
-Requires:	gnome-media-cddb >= 2.10.0-0.2
+BuildRequires:	rpmbuild(macros) >= 1.196
+Requires(post,preun):	GConf2
+Requires(post,postun):	scrollkeeper
+Requires:	gnome-media-cddb >= 2.10.1
 Requires:	gstreamer-cdparanoia >= 0.8.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,6 +45,7 @@ Odtwarzacz i ripper CD dla GNOME.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 rm -f po/no.po
 
@@ -63,11 +65,13 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
+rm -rf $RPM_BUILD_ROOT%{_datadir}/{mime-info,application-registry}
+
 %find_lang %{name} --with-gnome
 
 %post
-%gconf_schema_install
-/usr/bin/scrollkeeper-update
+%gconf_schema_install /etc/gconf/schemas/goobox.schemas
+/usr/bin/scrollkeeper-update -q
 %banner %{name} -e << EOF
 To be able to rip a CD, You need to install appropriate
 GStreamer plugins:
@@ -77,7 +81,15 @@ GStreamer plugins:
 - gstreamer-vorbis (encoding to Ogg Vorbis)
 EOF
 
-%postun -p /usr/bin/scrollkeeper-update
+%preun
+if [ $1 = 0 ]; then
+	%gconf_schema_uninstall /etc/gconf/schemas/goobox.schemas
+fi
+
+%postun
+if [ $1 = 0 ]; then
+	usr/bin/scrollkeeper-update -q
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -87,7 +99,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/*
-%{_datadir}/application-registry/*
 %{_libdir}/bonobo/servers/*
 %{_omf_dest_dir}/%{name}
 %{_datadir}/%{name}
