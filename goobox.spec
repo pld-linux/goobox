@@ -15,18 +15,20 @@ Patch0:		%{name}-desktop.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel >= 2.3.0
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gtk+2-devel >= 2:2.4.0
-BuildRequires:	libgnomeui-devel >= 2.6.0
-BuildRequires:	libbonobo-devel >= 2.6.0
-BuildRequires:	gnome-vfs2-devel >= 2.6.0
-BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	gnome-media-devel >= 2.8.0
+BuildRequires:	gnome-vfs2-devel >= 2.6.0
+BuildRequires:	gstreamer-GConf-devel >= 0.8.0
 BuildRequires:	gstreamer-devel >= 0.8.0
-BuildRequires:	gstreamer-plugins-devel
-BuildRequires:	gstreamer-GConf-devel
+BuildRequires:	gstreamer-plugins-devel >= 0.8.0
+BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool
+BuildRequires:	libbonobo-devel >= 2.6.0
+BuildRequires:	libglade2-devel >= 1:2.4.0
+BuildRequires:	libgnomeui-devel >= 2.6.0
+BuildRequires:	libtool
+Requires(post):	GConf2
 Requires:	gnome-media >= 2.8.0
 Requires:	gstreamer-cdparanoia
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,6 +44,7 @@ Odtwarzacz i ripper CD dla GNOME.
 %patch0 -p1
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
