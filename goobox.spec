@@ -28,7 +28,7 @@ BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.196
+BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,preun):	GConf2
 Requires(post,postun):	scrollkeeper
 Requires:	gnome-media-cddb >= 2.10.1
@@ -70,8 +70,8 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/{mime-info,application-registry}
 %find_lang %{name} --with-gnome
 
 %post
-%gconf_schema_install /etc/gconf/schemas/goobox.schemas
-/usr/bin/scrollkeeper-update -q
+%gconf_schema_install goobox.schemas
+%scrollkeeper_update_post
 %banner %{name} -e << EOF
 To be able to rip a CD, You need to install appropriate
 GStreamer plugins:
@@ -82,14 +82,10 @@ GStreamer plugins:
 EOF
 
 %preun
-if [ $1 = 0 ]; then
-	%gconf_schema_uninstall /etc/gconf/schemas/goobox.schemas
-fi
+%gconf_schema_uninstall goobox.schemas
 
 %postun
-if [ $1 = 0 ]; then
-	/usr/bin/scrollkeeper-update -q
-fi
+%scrollkeeper_update_postun
 
 %clean
 rm -rf $RPM_BUILD_ROOT
