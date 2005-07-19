@@ -1,15 +1,13 @@
 Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
-Version:	0.9.91
+Version:	0.9.92
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	dc15f40e664961c1e4dd7554ea7f02b5
+# Source0-md5:	88c830520dccb70523d4619372c16228
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-locale-names.patch
-Patch2:		%{name}-pl.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -28,6 +26,7 @@ BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	scrollkeeper
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,preun):	GConf2
 Requires(post,postun):	scrollkeeper
@@ -44,10 +43,6 @@ Odtwarzacz i ripper CD dla GNOME.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-
-rm -f po/no.po
 
 %build
 %{__libtoolize}
@@ -66,6 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 rm -rf $RPM_BUILD_ROOT%{_datadir}/{mime-info,application-registry}
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome
 
