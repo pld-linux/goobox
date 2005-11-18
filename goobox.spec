@@ -1,12 +1,12 @@
 Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
-Version:	0.9.92
+Version:	0.9.93
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	88c830520dccb70523d4619372c16228
+# Source0-md5:	d12dcf26907935ee4803107c572a5392
 Patch0:		%{name}-desktop.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
@@ -14,24 +14,28 @@ BuildRequires:	ORBit2-devel >= 1:2.12.1
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-common >= 2.12.0
+BuildRequires:	gnome-doc-utils >= 0.4.0
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gstreamer-GConf-devel >= 0.8.8
-BuildRequires:	gstreamer-devel >= 0.8.9
-BuildRequires:	gstreamer-plugins-devel >= 0.8.8
+BuildRequires:	gstreamer-devel >= 0.8.11
+BuildRequires:	gstreamer-GConf-devel >= 0.8.11
+BuildRequires:	gstreamer-plugins-devel >= 0.8.11
 BuildRequires:	gtk+2-devel >= 2:2.6.4
 BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.8.1
 BuildRequires:	libglade2-devel >= 1:2.5.1
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
+BuildRequires:	libnotify-devel >= 0.2.1
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	scrollkeeper
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	scrollkeeper
 Requires(post,preun):	GConf2
 Requires(post,postun):	scrollkeeper
 Requires:	gnome-media-cddb >= 2.10.1
-Requires:	gstreamer-cdparanoia >= 0.8.8
+Requires:	gstreamer-cdparanoia >= 0.8.11
+Requires:	notification-daemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,6 +49,8 @@ Odtwarzacz i ripper CD dla GNOME.
 %patch0 -p1
 
 %build
+gnome-doc-prepare --copy --force
+%{__gnome_doc_common}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -90,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
-%{_sysconfdir}/gconf/schemas/*
+%{_sysconfdir}/gconf/schemas/goobox.schemas
 %{_libdir}/bonobo/servers/*
 %{_omf_dest_dir}/%{name}
 %{_datadir}/%{name}
