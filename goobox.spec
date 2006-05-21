@@ -2,7 +2,7 @@ Summary:	CD player and ripper for GNOME
 Summary(pl):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
 Version:	0.9.93
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
