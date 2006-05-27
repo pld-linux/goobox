@@ -8,6 +8,7 @@ Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
 # Source0-md5:	d12dcf26907935ee4803107c572a5392
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-libnotify.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -17,15 +18,15 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-utils >= 0.4.0
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gstreamer-devel >= 0.8.11
-BuildRequires:	gstreamer-GConf-devel >= 0.8.11
-BuildRequires:	gstreamer-plugins-devel >= 0.8.11
+BuildRequires:	gstreamer-devel >= 0.8.12
+BuildRequires:	gstreamer-GConf-devel >= 0.8.12
+BuildRequires:	gstreamer-plugins-devel >= 0.8.12
 BuildRequires:	gtk+2-devel >= 2:2.6.4
 BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.8.1
 BuildRequires:	libglade2-devel >= 1:2.5.1
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
-BuildRequires:	libnotify-devel >= 0.2.1
+BuildRequires:	libnotify-devel >= 0.3.2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -34,7 +35,8 @@ BuildRequires:	scrollkeeper
 Requires(post,preun):	GConf2
 Requires(post,postun):	scrollkeeper
 Requires:	gnome-media-cddb >= 2.10.1
-Requires:	gstreamer-cdparanoia >= 0.8.11
+Requires:	gstreamer-cdparanoia >= 0.8.12
+Requires:	libnotify >= 0.3.2
 Requires:	notification-daemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,6 +49,7 @@ Odtwarzacz i ripper CD dla GNOME.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 gnome-doc-prepare --copy --force
@@ -71,6 +74,9 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 %gconf_schema_install goobox.schemas
 %scrollkeeper_update_post
@@ -88,9 +94,6 @@ EOF
 
 %postun
 %scrollkeeper_update_postun
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
