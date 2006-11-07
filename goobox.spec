@@ -103,5 +103,5 @@ EOF
 %{_libdir}/bonobo/servers/*
 %{_omf_dest_dir}/%{name}
 %{_datadir}/%{name}
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
