@@ -1,5 +1,5 @@
 Summary:	CD player and ripper for GNOME
-Summary(pl.UTF-8):   Odtwarzacz i ripper CD dla GNOME
+Summary(pl.UTF-8):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
 Version:	0.9.93
 Release:	1
