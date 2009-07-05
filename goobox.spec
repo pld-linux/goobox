@@ -2,10 +2,10 @@ Summary:	CD player and ripper for GNOME
 Summary(pl.UTF-8):	Odtwarzacz i ripper CD dla GNOME
 Name:		goobox
 Version:	0.9.93
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/gnome/sources/goobox/0.9/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/goobox/0.9/%{name}-%{version}.tar.bz2
 # Source0-md5:	d12dcf26907935ee4803107c572a5392
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-libnotify.patch
@@ -18,8 +18,8 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-utils >= 0.4.0
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gstreamer-devel >= 0.8.12
 BuildRequires:	gstreamer-GConf-devel >= 0.8.12
+BuildRequires:	gstreamer-devel >= 0.8.12
 BuildRequires:	gstreamer-plugins-devel >= 0.8.12
 BuildRequires:	gtk+2-devel >= 2:2.6.4
 BuildRequires:	intltool
@@ -32,12 +32,12 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
-Requires(post,preun):	GConf2
 Requires(post,postun):	scrollkeeper
+Requires(post,preun):	GConf2
+Requires:	dbus(org.freedesktop.Notifications)
 Requires:	gnome-media-cddb >= 2.10.1
 Requires:	gstreamer-cdparanoia >= 0.8.12
 Requires:	libnotify >= 0.3.2
-Requires:	notification-daemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
