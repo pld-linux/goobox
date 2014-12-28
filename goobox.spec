@@ -14,7 +14,7 @@ BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel >= 1:2.12.1
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-utils >= 0.4.0
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
