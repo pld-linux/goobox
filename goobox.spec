@@ -8,7 +8,7 @@ Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/goobox/3.4/%{name}-%{version}.tar.xz
 # Source0-md5:	748bdf19ba98bcb4494f8e467d45abcd
 Patch0:		%{name}-desktop.patch
-URL:		http://www.gnome.org/
+URL:		https://people.gnome.org/~paobac/goobox/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	brasero-devel >= 3
