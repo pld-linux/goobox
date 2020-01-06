@@ -1,11 +1,11 @@
---- goobox-3.4.1/data/goobox.desktop.in.orig	2015-11-17 21:33:37.041995326 +0100
-+++ goobox-3.4.1/data/goobox.desktop.in	2015-11-17 21:50:38.245285848 +0100
+--- goobox-3.6.0/data/org.gnome.Goobox.desktop.in.in.orig	2015-11-17 21:33:37.041995326 +0100
++++ goobox-3.6.0/data/org.gnome.Goobox.desktop.in.in	2015-11-17 21:50:38.245285848 +0100
 @@ -1,7 +1,7 @@
  [Desktop Entry]
- _Name=CD Player
- _Comment=Play and extract CDs
+ Name=CD Player
+ Comment=Play and extract CDs
 -Categories=GNOME;GTK;AudioVideo;Audio;
 +Categories=GNOME;GTK;AudioVideo;Audio;Player;
  Encoding=UTF-8
  Exec=goobox
- Icon=goobox
+ # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
